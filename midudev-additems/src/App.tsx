@@ -8,6 +8,9 @@ import { v4 as uuidv4 } from 'uuid';
 // Types
 import { ItemType } from './types/types'
 
+// Components
+import Item from './components/Item'
+
 // Styles
 import './App.css'
 
@@ -42,12 +45,14 @@ function App() {
 
   }
 
-  function updateItem(index: number, item: Partial<ItemType> ) {
+  function updateItem(itemId: string, item: Partial<ItemType> ) {
+    const index = items.findIndex( (item) => item.id === itemId);
     const newItems = [...items];
     newItems[index] = {...newItems[index], ...item};
     setItems(newItems);
   }
-  function removeItem(index: number) {
+  function removeItem(itemId: string) {
+    const index = items.findIndex( (item) => item.id === itemId);
     const newItems = [...items];
     newItems.splice(index, 1);
     setItems(newItems);
@@ -73,18 +78,11 @@ function App() {
 
         <aside>
         <ul className="items-list">
-          { items.map( (item, index) => (
-            <li key={item.id} id={`item-${item.id}`}>
-              {/* <span>{item.id}//</span> */}
-              <span>{item.content}</span>
-              <div>
-              <span role="button" aria-label="toggle item status" onClick={() => updateItem(index, { completed: !item.completed} )}>
-                {item.completed? 'Completed' : 'Pending'}
-              </span>
-              <button role="button" aria-label="delete item" onClick={() => removeItem(index)}>Remove</button>
-              </div>
-            </li>
-          ))}
+          { items.map( (item) => <Item 
+            item={item}
+            key={item.id}
+            updateItem={updateItem}
+            removeItem={removeItem} /> ) }
         </ul>
       </aside>
       </main>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, within, RenderResult } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import { test, describe } from '@jest/globals';
 
@@ -7,7 +8,7 @@ import { test, describe } from '@jest/globals';
 // Helpers and constants
 // ===========================
 
-const addItem = function( Rendered: RenderResult, text: string) {
+const addItem = async function( Rendered: RenderResult, text: string) {
   const { getByRole } = Rendered;
   const inputText = screen.getByPlaceholderText('Add a new item') as HTMLInputElement;
   const form = getByRole('form');
@@ -15,10 +16,14 @@ const addItem = function( Rendered: RenderResult, text: string) {
   expect(inputText).toBeInTheDocument();
   expect(form).toBeInTheDocument();
   // ## The user action
-  fireEvent.change(inputText, { target: { value: text } });
+  await userEvent.type(inputText, text);
   
   fireEvent.submit(form);
 }
+
+
+// The Tests
+// ===========================
 
 describe('App component', () => {
 
@@ -30,7 +35,7 @@ describe('App component', () => {
   });
   
   // Test End-to-End test to test the complete flow of adding, toggling status, and removing an item
-  test('End-to-End test for adding, toggling, and removing an item', () => {
+  test('End-to-End test for adding, toggling, and removing an item', async () => {
 
     const renderedApp = render(<App />);
 
@@ -40,9 +45,9 @@ describe('App component', () => {
 
     // # 2. Start by adding two items
     // =================================
-    addItem(renderedApp, 'I like Nutella');
+    await addItem(renderedApp, 'I like Nutella');
     const newItemContent = 'I like chocolate';
-    addItem(renderedApp, newItemContent);
+    await addItem(renderedApp, newItemContent);
 
     // ## Test: Confirm they are present
     expect(screen.getAllByRole('listitem', undefined)).toHaveLength(2);
