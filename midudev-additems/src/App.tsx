@@ -1,6 +1,5 @@
 // React dependencies
-import React, { useEffect } from 'react';
-import { useState } from 'react'
+import React from 'react';
 
 // External packages dependencies
 import { v4 as uuidv4 } from 'uuid';
@@ -11,9 +10,12 @@ import { ItemType } from './types/types'
 // Components
 import Item from './components/Item'
 
+// Internal dependencies and helpers
+import useItems from './hooks/useItems'
+
 // Styles
 import './App.css'
-import { getLocalStorage, updateLocalStorage } from './localStorage';
+
 
 const INITIAL_ITEMS: ItemType[] = [
   // good to have some examples if I want to test.
@@ -25,16 +27,11 @@ const INITIAL_ITEMS: ItemType[] = [
 function App() {
   // # STATES
   // =============
-  const [items, setItems] = useState<ItemType[]>(INITIAL_ITEMS);
+  const {items, addItem, removeItem, updateItem} = useItems(INITIAL_ITEMS);
 
   // # HOOKS
   // =============
-  useEffect(() => {
-    const initialItemasString : string | null = getLocalStorage('items');
-    const initialItems: ItemType[] = initialItemasString? JSON.parse(initialItemasString) : items;
-    setItems(initialItems);
-  }, []);
-
+  // silence is golden.
 
   // # HANDLES
   // =============
@@ -52,7 +49,7 @@ function App() {
         content: value,
         completed: false
       };
-      itemsCRUD.addItem(newItem);
+      addItem(newItem);
       input.value = '';
     }
 
@@ -60,28 +57,7 @@ function App() {
 
   // # METHODS
   // =============
-  const itemsCRUD = {
-    updateItem: function(itemId: string, item: Partial<ItemType> ) {
-      const index = items.findIndex( (item) => item.id === itemId);
-      const newItems = [...items];
-      newItems[index] = {...newItems[index], ...item};
-      setItems(newItems);
-      updateLocalStorage('items', JSON.stringify(newItems));
-    },
-    removeItem: function(itemId: string) {
-      const index = items.findIndex( (item) => item.id === itemId);
-      const newItems = [...items];
-      newItems.splice(index, 1);
-      setItems(newItems);
-      updateLocalStorage('items', JSON.stringify(newItems));
-    },
-    addItem: function( theItem: ItemType) {
-      const newItems = [...items];
-      newItems.push(theItem);
-      setItems(newItems);
-      updateLocalStorage('items', JSON.stringify(newItems));
-    }
-  }
+  // silence is golden
 
   return (
     <article>
@@ -101,7 +77,10 @@ function App() {
           { items.map( (item) => (
             <Item key={item.id}
               item={item}
-              itemsCRUD={itemsCRUD}
+              itemsCRUD={{
+                updateItem,
+                removeItem
+              }}
             />) ) }
         </ul>
       </aside>

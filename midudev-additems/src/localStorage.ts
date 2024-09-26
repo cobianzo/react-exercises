@@ -4,16 +4,20 @@
  * @param {string} key - The key to store the value under.
  * @param {string} value - The value to store.
  */
-export const addLocalStorage = function(key, value) {
-  localStorage.setItem(key, value);
-  console.log(`Added: ${key} = ${value}`);
+export const addLocalStorage = function(key: string, value: string | object | null) {
+  const savedValue = sanitizeValue( key, value );
+  if ( savedValue === null ) {
+    return;
+  }
+  localStorage.setItem(key, savedValue);
+  console.log(`Added: ${key} = ${savedValue}`);
 }
 
 /**
 * Removes an item from localStorage by key.
 * @param {string} key - The key of the item to remove.
 */
-export const removeLocalStorage = function(key) {
+export const removeLocalStorage = function(key: string) {
   localStorage.removeItem(key);
   console.log(`Removed: ${key}`);
 }
@@ -25,15 +29,11 @@ export const removeLocalStorage = function(key) {
 * @param {string} value - The new value to set.
 */
 export const updateLocalStorage = function(key: string, value: string | object | null) {
-  let savedValue = value;
-  if ( savedValue === null || savedValue === '' || savedValue === undefined ) {
-    removeLocalStorage(key);
-    return;
-  } else if ( typeof savedValue === 'object' ) {
-    savedValue = JSON.stringify(value);
-  } 
-  localStorage.setItem(key, savedValue);
-  console.log(`Updated: ${key} = ${savedValue}`);
+  const savedValue = sanitizeValue( key, value );
+  if ( savedValue !== null ) {
+    localStorage.setItem(key, savedValue);
+    console.log(`Updated: ${key} = ${savedValue}`);
+  }
 }
 
 /**
@@ -50,4 +50,21 @@ export const getLocalStorage = function(key: string) : string | null {
       return null;
   }
   return value;
+}
+
+
+/**
+ * 
+ * @param value 
+ * @returns 
+ */
+function sanitizeValue( key: string, value: string | object | null) : string | null {
+  let savedValue = value;
+  if ( savedValue === null || savedValue === '' || savedValue === undefined ) {
+    removeLocalStorage(key);
+    return null;
+  } else if ( typeof savedValue === 'object' ) {
+    savedValue = JSON.stringify(value);
+  }
+  return savedValue;
 }

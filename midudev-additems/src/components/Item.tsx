@@ -1,6 +1,12 @@
+// React imports
 import React from 'react'
 import { ItemType } from '../types/types'
 
+/**
+ * JSX rendering a single Item.
+ * @param param0 : item ItemType, itemsCRUD { updateItem: ( arg0: string, arg1: Partial<ItemType> ) => void, removeItem: ( arg0: string) => void, }
+ * @returns JSX
+ */
 export default function Item( { 
   item,
   itemsCRUD
