@@ -46,6 +46,9 @@ ul.items-list {
     grid-template-columns: minmax(200px, 3fr) 1fr;
     align-items: center;
 
+    [role="button"] {
+      cursor: pointer;
+    }
     
     div {
       min-width: 300px;
