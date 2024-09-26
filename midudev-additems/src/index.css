@@ -56,9 +56,6 @@ input {
   }
 }
 
-input {
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -67,7 +64,8 @@ input {
   a:hover {
     color: #747bff;
   }
-  button {
+  button,
+  input {
     background-color: #f9f9f9;
   }
 }

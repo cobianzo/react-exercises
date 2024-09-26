@@ -1,5 +1,7 @@
 # Exercise (Spanish)
 
+Youtube video: https://www.youtube.com/watch?v=JW_x-Tq5Vt0
+
 Source: https://github.com/midudev/pruebas-tecnicas/tree/main/live-coding/02-add-items-react
 
 Which sources:  
@@ -26,3 +28,32 @@ Además, cada vez que se hace click en cualquier elemento de la lista, debe elim
 Extra: creating tests, and specially E2E test.  
 Refactor using custom hooks.  
 Create tests for one of the custom hooks.
+
+For Testing, it's important to know the roles for every tag:
+
+Roles por defecto para etiquetas HTML:
+Etiqueta Rol por defecto Descripción
+<a> link Define un enlace que navega a otra página o recurso.
+<button> button Define un botón que puede ser clicado para ejecutar una acción.
+
+<header>	banner	Representa el encabezado de una sección o página.
+<footer>	contentinfo	Representa el pie de página de una página o sección.
+<article>	article	Representa un contenido autónomo.
+<section>	region (si tiene un encabezado)	Define una sección en un documento.
+<nav>	navigation	Define un bloque de enlaces de navegación.
+<h1> a <h6>	heading	Representa encabezados con diferentes niveles de importancia.
+<img>	img	Define una imagen en el documento.
+<input type="text">	textbox	Representa un campo de entrada de texto.
+<input type="checkbox">	checkbox	Representa una casilla de verificación.
+<input type="radio">	radio	Representa un botón de opción.
+<ul>	list	Define una lista no ordenada.
+<ol>	list	Define una lista ordenada.
+<li>	listitem	Representa un ítem de una lista (ul o ol).
+<table>	table	Define una tabla de datos.
+<th>	columnheader o rowheader	Representa un encabezado de columna o fila en una tabla.
+<td>	cell	Representa una celda en una tabla.
+<form>	form	Representa un formulario interactivo.
+<main>	main	Define el contenido principal del documento.
+<aside>	complementary	Representa contenido complementario al contenido principal.
+<details>	group	Representa un bloque de detalles adicionales.
+<summary>	button	Representa el resumen de un bloque de detalles (<details>).

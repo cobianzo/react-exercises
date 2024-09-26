@@ -12,9 +12,10 @@ import { ItemType } from './types/types'
 import './App.css'
 
 const INITIAL_ITEMS: ItemType[] = [
-  { id: uuidv4(), content: 'Item 1', completed: false },
-  { id: uuidv4(), content: 'Item 2', completed: false },
-  { id: uuidv4(), content: 'Item 3', completed: false },
+  // good to have some examples if I want to test.
+  // { id: uuidv4(), content: 'Item 1', completed: false },
+  // { id: uuidv4(), content: 'Item 2', completed: false },
+  // { id: uuidv4(), content: 'Item 3', completed: false },
 ]
 
 function App() {
@@ -62,7 +63,7 @@ function App() {
       <h1>Exercice basic react + typescript + jest unit test</h1>
       <main>
         <div className="main-column">
-          <form onSubmit={ handleSubmitItem }>
+          <form onSubmit={ handleSubmitItem } aria-label='Add elements to the list'>
             <input type="text" name="item" placeholder="Add a new item"/>
             <button>
               ADD
@@ -77,7 +78,9 @@ function App() {
               {/* <span>{item.id}//</span> */}
               <span>{item.content}</span>
               <div>
-              <span onClick={() => updateItem(index, { completed: !item.completed} )}>{item.completed? 'Completed' : 'Pending'}</span>
+              <span role="button" aria-label="toggle item status" onClick={() => updateItem(index, { completed: !item.completed} )}>
+                {item.completed? 'Completed' : 'Pending'}
+              </span>
               <button role="button" aria-label="delete item" onClick={() => removeItem(index)}>Remove</button>
               </div>
             </li>
