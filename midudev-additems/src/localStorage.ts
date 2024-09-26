@@ -10,7 +10,7 @@ export const addLocalStorage = function(key: string, value: string | object | nu
     return;
   }
   localStorage.setItem(key, savedValue);
-  console.log(`Added: ${key} = ${savedValue}`);
+  // console.log(`Added: ${key} = ${savedValue}`);
 }
 
 /**
@@ -19,7 +19,7 @@ export const addLocalStorage = function(key: string, value: string | object | nu
 */
 export const removeLocalStorage = function(key: string) {
   localStorage.removeItem(key);
-  console.log(`Removed: ${key}`);
+  // console.log(`Removed: ${key}`);
 }
 
 /**
@@ -32,7 +32,7 @@ export const updateLocalStorage = function(key: string, value: string | object |
   const savedValue = sanitizeValue( key, value );
   if ( savedValue !== null ) {
     localStorage.setItem(key, savedValue);
-    console.log(`Updated: ${key} = ${savedValue}`);
+    // console.log(`Updated: ${key} = ${savedValue}`);
   }
 }
 
@@ -44,9 +44,9 @@ export const updateLocalStorage = function(key: string, value: string | object |
 export const getLocalStorage = function(key: string) : string | null {
   const value = localStorage.getItem(key);
   if (value !== null) {
-      console.log(`Retrieved: ${key} = ${value}`);
+      // console.log(`Retrieved: ${key} = ${value}`);
   } else {
-      console.log(`Key not found: ${key}`);
+      // console.log(`Key not found: ${key}`);
       return null;
   }
   return value;

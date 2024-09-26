@@ -7,6 +7,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true, // Enable this for default imports
     "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
@@ -16,5 +17,5 @@
     "noEmit": true,
     "jsx": "react" // Ensure this is set to support JSX
   },
-  "include": ["src"]
+  "include": ["src", "tests"]
 }

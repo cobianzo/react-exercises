@@ -6,6 +6,15 @@
 
   @media (max-width: 600px) {
     padding: 0.5rem;
+  }
+}
+
+article {
+  max-width: 900px;
+  border: 1px solid lightcoral;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.9);
 }
 
 main {
@@ -41,21 +50,23 @@ aside {
 
 ul.items-list {
   padding: 0;
+  margin-left: 1rem;
+  margin-top: -10px;
   li {
     display: grid;
     grid-template-columns: minmax(200px, 3fr) 1fr;
     align-items: center;
+    border-bottom: 1px solid #ccc;
 
     [role="button"] {
       cursor: pointer;
     }
-    
+
     div {
       min-width: 300px;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      border-bottom: 1px solid #ccc;
     }
     @media screen and (max-width: 600px) {
       grid-template-columns: 1fr;
