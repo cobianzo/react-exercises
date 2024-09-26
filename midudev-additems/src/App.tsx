@@ -1,11 +1,20 @@
+// React dependencies
+import React from 'react';
 import { useState } from 'react'
+
+// External packages dependencies
+import { v4 as uuidv4 } from 'uuid';
+
+// Types
 import { ItemType } from './types/types'
+
+// Styles
 import './App.css'
 
 const INITIAL_ITEMS: ItemType[] = [
-  { id: crypto.randomUUID(), content: 'Item 1', completed: false },
-  { id: crypto.randomUUID(), content: 'Item 2', completed: false },
-  { id: crypto.randomUUID(), content: 'Item 3', completed: false },
+  { id: uuidv4(), content: 'Item 1', completed: false },
+  { id: uuidv4(), content: 'Item 2', completed: false },
+  { id: uuidv4(), content: 'Item 3', completed: false },
 ]
 
 function App() {
@@ -22,7 +31,7 @@ function App() {
       // create with id and set completed to false.
       const value: string = input.value;
       const newItem = { 
-        id: crypto.randomUUID(), 
+        id: uuidv4(), 
         content: value,
         completed: false
       };
@@ -42,7 +51,7 @@ function App() {
     newItems.splice(index, 1);
     setItems(newItems);
   }
-  function addItem( theItem: Item) {
+  function addItem( theItem: ItemType) {
     const newItems = [...items];
     newItems.push(theItem);
     setItems(newItems);
