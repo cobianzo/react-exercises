@@ -61,7 +61,7 @@ function App() {
 
   return (
     <article>
-      <h1>Exercice basic react + typescript + jest unit test</h1>
+      <h1>Exercise basic react + typescript + jest test E2E</h1>
       <main>
         <div className="main-column">
           <form onSubmit={ handleSubmitItem } aria-label='Add elements to the list'>

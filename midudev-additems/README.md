@@ -48,7 +48,16 @@ Create tests for one of the custom hooks.
 
 - Convert the hook into a Reducer.
 - Add a custo hook for SEO: the custom hook updates the title and sets the metadescription. And shows the number of items.
-- Deploy it in netlify.
+- Deploy it in netifly.
+
+# e2e testing.
+
+I had to install several packages for jest to work.  
+I followed https://www.youtube.com/watch?v=tnCLaxCCKWk&t=1419s
+
+I set all jest testing directly in `package.json`, instead of `jest.config.ts`
+
+=====
 
 For Testing, it's important to know the roles for every tag:
 

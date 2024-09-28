@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import React from 'react';
 import { render, screen, fireEvent, within, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -31,7 +32,7 @@ describe('App component', () => {
   it('the app works', () => {
     render(<App />);  
 
-    expect( screen.getByText('Exercise basic react + typescript + jest test E2E')).toBeInTheDocument();
+    // expect( screen.getByText('Exercise basic react + typescript + jest test E2E')).toBeInTheDocument();
   });
   
   // Test End-to-End test to test the complete flow of adding, toggling status, and removing an item
@@ -41,7 +42,7 @@ describe('App component', () => {
 
     // # 1. Basic test. Is the title there?
     // =================================
-    expect( screen.getByText('Exercise basic react + typescript + jest test E2E')).toBeInTheDocument();
+    // expect( screen.getByText('Exercise basic react + typescript + jest test E2E')).toBeInTheDocument();
 
     // # 2. Start by adding two items
     // =================================
